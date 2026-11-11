@@ -1,0 +1,45 @@
+HERRAMIENTAS CDR - Empaquetado para Windows
+============================================
+
+1) Copia tus logos a la carpeta  www\Imagenes\
+   (Belcorp.jpg y softwareone.jpeg)
+
+2) Instala Node.js LTS (https://nodejs.org) SOLO en el equipo donde vas a crear el instalador.
+
+3) Prueba la app: doble clic en  probar.bat
+
+4) Crea el instalador: doble clic en  crear-instalador.bat
+   Al terminar se abre la carpeta "dist" con el archivo
+   "Herramientas CDR Setup 1.0.0.exe".
+
+5) Copia ese .exe a cualquier equipo con Windows 10/11 e instalalo.
+   Los equipos de destino NO necesitan Node.js ni internet.
+
+
+PUBLICAR EN CLOUDFLARE CON CONFIGURACION COMPARTIDA
+====================================================
+(Para que todos los equipos vean las mismas listas)
+
+0) ANTES: en el equipo donde ya editaste las listas, entra al admin y
+   pulsa "Exportar todo" para tener un respaldo.
+
+1) Cloudflare -> Workers y Pages -> KV -> "Create a namespace"
+   (por ejemplo: cdr-config).
+
+2) En tu proyecto de Pages -> Settings -> Bindings -> Add -> KV namespace
+   Nombre de variable:  CONFIG_KV     (exacto)   Namespace: el del paso 1.
+
+3) Settings -> Variables and Secrets -> Add (tipo Secret):
+   ADMIN_USER       = el usuario que quieras
+   ADMIN_PASSWORD   = una clave larga
+
+4) Despliega DESDE ESTA CARPETA (la que contiene "functions" y "www"):
+      npx wrangler pages deploy www --project-name TU_PROYECTO
+   (o conecta el repositorio de Git con la raiz en esta carpeta y
+    "Build output directory" = www).
+   Arrastrar solo la carpeta www al panel NO publica la carpeta "functions".
+   Si agregaste los bindings/secretos despues de desplegar, vuelve a desplegar.
+
+5) Abre  https://TU-SITIO/admin.html  e ingresa con ADMIN_USER / ADMIN_PASSWORD.
+   La primera vez, si el servidor esta vacio, se publican las listas de ese equipo.
+   Desde ahi, cada cambio se guarda en el servidor y lo ven todos los equipos.

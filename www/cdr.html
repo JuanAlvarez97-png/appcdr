@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Reporte Técnico CDR</title>
+    <link rel="stylesheet" href="cdr.css">
+    <script src="lib/jspdf.umd.min.js"></script>
+    <script src="lib/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Reporte Técnico CDR</h1>
+        <a href="index.html" class="menu-link">← Menú principal</a>
+        <div class="form-header">
+            <div class="logo-placeholder"><img src="Imagenes/Belcorp.jpg" alt="Logo Belcorp"></div>
+            <h2>Centro de Servicios Intergrupo - Belcorp</h2>
+            <div class="logo-placeholder2"><img src="Imagenes/softwareone.jpeg" alt="Logo SWO"></div>
+        </div>
+        
+        <form id="reporteForm">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="fechaIngreso">Fecha de Ingreso:</label>
+                        <input type="date" id="fechaIngreso" name="fechaIngreso">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="rdsResponsable">RDS Responsable:</label>
+                        <select id="rdsResponsable" name="rdsResponsable" data-lista="cdr.rdsResponsable">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="ticket">Ticket:</label>
+                        <input type="text" id="ticket" name="ticket">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" id="usuario" name="usuario">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="area">Área:</label>
+                        <input type="text" id="area" name="area">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" id="cargo" name="cargo">
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Datos Componente que Ingresa al Centro</h3>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="componente">Componente:</label>
+                        <select id="componente" name="componente" data-lista="cdr.componente">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="marca">Marca:</label>
+                        <select id="marca" name="marca" data-lista="cdr.marca">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="modelo">Modelo:</label>
+                        <input type="text" id="modelo" name="modelo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="serial">Serial:</label>
+                        <input type="text" id="serial" name="serial">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="placa">Placa:</label>
+                        <input type="text" id="placa" name="placa">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="discoDuro">Disco Duro:</label>
+                        <select id="discoDuro" name="discoDuro" data-lista="cdr.discoDuro">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="ram">RAM:</label>
+                        <select id="ram" name="ram" data-lista="cdr.ram">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sistemaOperativo">Sistema Operativo:</label>
+                        <select id="sistemaOperativo" name="sistemaOperativo" data-lista="cdr.sistemaOperativo">
+                            <option value="">Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group checkbox-group">
+                        <label>¿Entrega equipo?:</label>
+                        <input type="radio" id="entregaEquipoSi" name="entregaEquipo" value="Sí">
+                        <label for="entregaEquipoSi">Sí</label>
+                        <input type="radio" id="entregaEquipoNo" name="entregaEquipo" value="No">
+                        <label for="entregaEquipoNo">No</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group checkbox-group">
+                        <label>¿Entrega cargador?:</label>
+                        <input type="radio" id="entregaCargadorSi" name="entregaCargador" value="Sí">
+                        <label for="entregaCargadorSi">Sí</label>
+                        <input type="radio" id="entregaCargadorNo" name="entregaCargador" value="No">
+                        <label for="entregaCargadorNo">No</label>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Reporte Técnico:</h3>
+            
+            <div class="form-group">
+                <label for="quePaso">¿Qué pasó?</label>
+                <textarea id="quePaso" name="quePaso"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="realizadoPreviamente">¿Que se realizó?</label>
+                <textarea id="realizadoPreviamente" name="realizadoPreviamente"></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>¿Afecta la operación?:</label>
+                <input type="radio" id="afectaOperacionSi" name="afectaOperacion" value="Sí">
+                <label for="afectaOperacionSi">Sí</label>
+                <input type="radio" id="afectaOperacionNo" name="afectaOperacion" value="No">
+                <label for="afectaOperacionNo">No</label>
+            </div>
+            
+            <div class="form-group">
+                <label for="recomendaciones">Recomendaciones y Observaciones:</label>
+                <textarea id="recomendaciones" name="recomendaciones"></textarea>
+            </div>
+            
+            <div class="form-group photo-upload">
+                <label for="fotos">Evidencia Fotográfica:</label>
+                <input type="file" id="fotos" name="fotos" accept="image/*" multiple onchange="previewPhotos(event)">
+                <div class="photo-preview" id="photoPreview"></div>
+            </div>
+            
+            <button type="button" onclick="generatePDF()">Generar PDF</button>
+        </form>
+        
+        <div id="preview" class="preview-container">
+            <!-- Aquí se mostrará la vista previa antes de generar el PDF -->
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="cdr.js"></script>
+</body>
+</html>

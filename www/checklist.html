@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist Mantenimiento Preventivo - Belcorp</title>
+  <script src="lib/html2pdf.bundle.min.js"></script>
+  <link rel="stylesheet" href="checklist.css">
+</head>
+<body>
+  <nav class="menu-bar">
+    <a href="index.html" class="menu-link">← Menú principal</a>
+  </nav>
+
+  <main class="main">
+    <!--Cabecero: logos y título-->
+    <section class="section1-header">
+      <header class="header">
+        <div class="LogosHeader1">
+          <img src="Imagenes/Belcorp.jpg" alt="logo-Belcorp" id="logo1">
+        </div>
+        <h1>
+          Checklist para Mantenimiento preventivo y limpieza de Equipos - Belcorp
+        </h1>
+        <div class="LogosHeader2">
+          <img src="Imagenes/softwareone.jpeg" alt="LogoSWO" id="logo2">
+        </div>
+      </header>
+    </section>
+
+    <!--Sección 2: datos generales-->
+    <section class="section2-form">
+      <form id="dataForm">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="fecha">Fecha: </label>
+              <input type="date" id="fecha" name="fecha" required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="sede">Sede: </label>
+              <select name="sede" id="sede" data-lista="checklist.sede" required>
+                <option value="">Seleccione...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="area">Área: </label>
+              <input type="text" id="area" name="area" required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="piso">Piso: </label>
+              <select name="piso" id="piso" data-lista="checklist.piso" required>
+                <option value="">Seleccione...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group checkbox-group">
+              <h3 class="tipo">Tipo: </h3>
+              <input type="radio" id="desktop" name="tipo" value="desktop">
+              <label for="desktop">Desktop</label>
+              <input type="radio" id="laptop" name="tipo" value="laptop">
+              <label for="laptop">Laptop</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group checkbox-group">
+              <h3 class="sistem">Sistema Operativo: </h3>
+              <input type="radio" id="windows" name="sistema" value="windows">
+              <label for="windows">Windows</label>
+              <input type="radio" id="MacOS" name="sistema" value="mac">
+              <label for="MacOS">MacOS</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!--Sección 3: componentes-->
+    <section class="form-section3">
+      <div class="componente">
+        <label class="component">Componentes</label>
+      </div>
+
+      <form id="dataform2">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="marca">Marca: </label>
+              <select name="marca" id="marca" required>
+                <option value="">Seleccione...</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="modelo">Modelo: </label>
+              <select name="modelo" id="modelo" required>
+                <option value="">Seleccione primero la marca</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="serial">Serial: </label>
+              <input type="text" id="serial" name="serial" maxlength="10">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="placa">Placa: </label>
+              <input type="text" id="placa" name="placa" maxlength="7">
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!--Sección 4: tabla de actividades (se genera desde la configuración)-->
+    <section class="table-section4">
+      <table class="tableDescription">
+        <thead>
+          <tr>
+            <th class="item">Item</th>
+            <th class="descrip">Descripción de Actividad</th>
+            <th class="select-checkbox">SI</th>
+            <th class="select-checkbox">NO</th>
+            <th class="select-checkbox">N/A</th>
+          </tr>
+        </thead>
+        <tbody id="actividadesBody"></tbody>
+      </table>
+    </section>
+
+    <!--Sección 5: observaciones y datos del personal-->
+    <section class="sectionObservation">
+      <form id="observationForm">
+        <div class="col">
+          <div class="form-group">
+            <label for="observaciones">Observaciones y Recomendaciones </label>
+            <textarea id="observaciones" name="observaciones" required rows="4" spellcheck="true" lang="es"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="responsable">Responsable SWO: </label>
+              <select name="responsable" id="responsable" data-lista="checklist.responsable" required>
+                <option value="">Seleccione...</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="usuario">Usuario Belcorp: </label>
+              <input type="text" name="usuario" id="usuario" required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="cargo">Cargo: </label>
+              <input type="text" name="cargo" id="cargo" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="imagenes">Cargar imágenes: </label>
+              <input type="file" id="imagenes" name="imagenes" multiple accept="image/*">
+            </div>
+            <div class="image-grid" id="imagePreview"></div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <div class="pdf-button">
+      <button type="button" id="generatePdfBtn">Generar PDF</button>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="checklist.js"></script>
+</body>
+</html>

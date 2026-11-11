@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Herramientas CDR</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin">
+        <a href="index.html" class="volver">← Menú principal</a>
+
+        <!-- Acceso -->
+        <div id="login">
+            <h1>Acceso administrador</h1>
+            <label for="loginUser">Usuario</label>
+            <input type="text" id="loginUser" autocomplete="username">
+            <label for="loginPass">Contraseña</label>
+            <input type="password" id="loginPass" autocomplete="current-password">
+            <button type="button" id="btnLogin" class="primario">Ingresar</button>
+            <div id="loginError"></div>
+        </div>
+
+        <!-- Panel -->
+        <div id="panel" hidden>
+            <h1>Administración de listas y actividades</h1>
+            <p class="aviso" id="modo"></p>
+
+            <div class="toolbar">
+                <button type="button" class="sec" id="btnExportar">⬇ Exportar todo</button>
+                <button type="button" class="sec" id="btnImportar">⬆ Importar</button>
+                <button type="button" class="peligro" id="btnRestaurar">↺ Restaurar originales</button>
+                <button type="button" class="sec" id="btnSalir">⎋ Cerrar sesión</button>
+                <input type="file" id="archivoImportar" accept=".json,application/json" hidden>
+            </div>
+            <div id="msg" role="status"></div>
+
+            <div class="tabs" role="tablist">
+                <button type="button" class="tab" data-tab="cdr" role="tab">Reporte Técnico CDR</button>
+                <button type="button" class="tab" data-tab="checklist" role="tab">Checklist de Mantenimiento</button>
+            </div>
+
+            <div id="contenido"></div>
+        </div>
+    </div>
+
+    <script>window.CONFIG_NO_AUTOSYNC = true;</script>
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

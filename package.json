@@ -1,0 +1,31 @@
+{
+  "name": "herramientas-cdr",
+  "productName": "Herramientas CDR",
+  "version": "1.0.0",
+  "description": "Reporte Técnico CDR y Checklist de Mantenimiento Preventivo - Belcorp",
+  "main": "main.js",
+  "author": "Centro de Servicios Intergrupo",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.belcorp.herramientascdr",
+    "productName": "Herramientas CDR",
+    "asar": false,
+    "files": ["main.js", "package.json", "www/**/*"],
+    "directories": { "output": "dist" },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
